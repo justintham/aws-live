@@ -59,9 +59,9 @@ def AddEmp():
         emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + ".jpg"
         s3 = boto3.resource('s3')
         number_of_rows = cursor.execute("SELECT * FROM employee")
-        scientist_count = cursor.execute("SELECT COUNT(*) FROM employee WHERE job_role = 'Data Scientist")
-        engineering_count = cursor.execute("SELECT COUNT(*) FROM employee WHERE job_role = 'Software Engineering")
-        hr_count = cursor.execute("SELECT COUNT(*) FROM employee WHERE job_role = 'Human Resource")
+        scientist_count = cursor.execute("SELECT COUNT(*) FROM employee WHERE job_role = 'Data Scientist'")
+        engineering_count = cursor.execute("SELECT COUNT(*) FROM employee WHERE job_role = 'Software Engineering'")
+        hr_count = cursor.execute("SELECT COUNT(*) FROM employee WHERE job_role = 'Human Resource'")
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
