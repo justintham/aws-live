@@ -72,7 +72,7 @@ float: right;
   grid-area: image;
   box-sizing: border-box;
   position: relative;
-  width: 29vw;
+  width: 27vw;
   height: 49vh;
   font-size: 2vw;
 margin-left: 18vw;
@@ -125,3 +125,7 @@ margin-left: 43vw;
 margin-top: 7vh;
 margin-bottom: 0;
 }
+
+
+
+

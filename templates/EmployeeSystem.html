@@ -36,6 +36,7 @@
                     <br>
                     <br>
                     Employee Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="employee_name" ><br><br>
+                    <!--Job Role:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="job_role" >-->
                     <div class="job_role" id="design_time">
                         Job Role :
                         <label for="option" ></label>
@@ -78,7 +79,7 @@
                                         $("#dvPreview").append("<img />");
                                         var reader = new FileReader();
                                         reader.onload = function (e) {
-                                            $("#dvPreview img").attr('style','width: 26.2vw; height: 36.2vh; padding-left: 1vw; padding-top:1vh; ');
+                                            $("#dvPreview img").attr('style','width: 26.2vw; height: 36.2vh; padding-left: 0; padding-top:1vh; ');
                                             $("#dvPreview img").attr("src", e.target.result);
                                         }
                                         reader.readAsDataURL($(this)[0].files[0]);
