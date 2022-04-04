@@ -32,7 +32,13 @@
             <h2>Employee Name: {{ name }}</h2>
             <h2>Job Role: {{ jobrole }}</h2>
             <h2>Salary: RM{{ month_salary }}</h2>
-            <h2>URL: https://{{ domain_name }}/{{ file_name }}</h2>
+            <br>
+            <button onclick="myFunction()">Check Job Role</button>
+            <script>
+              function myFunction() {
+                alert("{{ total_job }}");
+              }
+              </script>
             <h2>Total of Employees: {{number_of_rows}}</h2> 
 
             <div class="decision_button">

@@ -59,6 +59,7 @@ def AddEmp():
         emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + ".jpg"
         s3 = boto3.resource('s3')
         number_of_rows = cursor.execute("SELECT * FROM employee")
+        job_role_count = cursor.execute("SELECT COUNT(*) FROM employee GROUP BY job_role")
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
@@ -83,7 +84,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('OutputEmployeeSystem.html', employee_id = emp_id, name=employee_name, jobrole=job_role,month_salary=salary, number_of_rows=number_of_rows, domain_name = cloud_domain, file_name = emp_image_file_name_in_s3)
+    return render_template('OutputEmployeeSystem.html', employee_id = emp_id, name=employee_name, jobrole=job_role,month_salary=salary, number_of_rows=number_of_rows, total_job = job_role_count )
 
 
 
