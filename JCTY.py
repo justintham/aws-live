@@ -65,7 +65,6 @@ def AddEmp():
         engineering_count = cursor.execute("SELECT *  FROM employee WHERE job_role = 'Software Engineering'")
         hr_count = cursor.execute("SELECT * FROM employee WHERE job_role = 'Human Resource'")
         image_url = "https://"+bucket+".s3.amazonaws.com/"+emp_image_file_name_in_s3
-        response = HttpResponse(image_url,content_type="image/png")
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
@@ -94,7 +93,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('OutputEmployeeSystem.html', employee_id = emp_id, name=employee_name, jobrole=job_role,month_salary=salary, number_of_rows=number_of_rows, scientist_count = scientist_count, engineering_count = engineering_count, hr_count = hr_count, response = response)
+    return render_template('OutputEmployeeSystem.html', employee_id = emp_id, name=employee_name, jobrole=job_role,month_salary=salary, number_of_rows=number_of_rows, scientist_count = scientist_count, engineering_count = engineering_count, hr_count = hr_count, image_url = image_url)
 
 
 @app.route("/addemp1", methods=['POST'])
