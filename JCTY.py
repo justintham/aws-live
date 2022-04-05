@@ -56,7 +56,7 @@ def AddEmp():
         cursor.execute(insert_sql, (emp_id, employee_name, job_role, salary))
         db_conn.commit()
         # Uplaod image file in S3 #
-        emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + ".jpg"
+        emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + ".png"
         s3 = boto3.resource('s3')
         number_of_rows = cursor.execute("SELECT * FROM employee")
         scientist_count = cursor.execute("SELECT * FROM employee WHERE job_role = 'Data Scientist'")
@@ -65,7 +65,7 @@ def AddEmp():
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
-            s3.Bucket(custombucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file)
+            s3.Bucket(custombucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file, Content-Type='image/png')
             bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
 
