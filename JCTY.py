@@ -65,7 +65,15 @@ def AddEmp():
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
-            s3.Bucket(custombucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file)
+            #s3.Bucket(custombucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file)
+            mimetype = 'image/jpeg' # you can programmatically get mimetype using the `mimetypes` module
+            s3.upload_file(
+    	Filename=emp_image_file,
+    	Bucket=bucket,
+    	Key=emp_image_file_name_in_s3,
+   	 ExtraArgs={
+       	 "ContentType": mimetype
+    	})
             bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
 
