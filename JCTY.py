@@ -68,7 +68,7 @@ def AddEmp():
             #s3.Bucket(custombucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file)
             mimetype = 'image/jpeg' # you can programmatically get mimetype using the `mimetypes` module
             s3.upload_file(
-    	Filename=emp_image_file,
+    	Filename=str(emp_id),
     	Bucket=bucket,
     	Key=emp_image_file_name_in_s3,
    	 ExtraArgs={
