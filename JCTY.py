@@ -3,13 +3,16 @@ from pymysql import connections
 import os
 import boto3
 from config import *
+from botocore.client import Config
+from django.http import HttpResponse
 
 app = Flask(__name__,template_folder='templates')
 
 bucket = custombucket
 region = customregion
 cloud_domain = cloudfront
-
+ACCESS_KEY_ID = ACCESS_KEY_ID
+ACCESS_SECRET_KEY = ACCESS_SECRET_KEY 
 db_conn = connections.Connection(
     host=customhost,
     port=3306,
@@ -34,7 +37,6 @@ def employeeDatabase():
 @app.route("/empDatabase1", methods=['GET', 'POST'])
 def attendanceDatabase():
     return render_template('AttendanceSystem.html')
-
 
 
 @app.route("/addemp", methods=['POST'])
@@ -63,6 +65,7 @@ def AddEmp():
         engineering_count = cursor.execute("SELECT *  FROM employee WHERE job_role = 'Software Engineering'")
         hr_count = cursor.execute("SELECT * FROM employee WHERE job_role = 'Human Resource'")
         image_url = "https://"+bucket+".s3.amazonaws.com/"+emp_image_file_name_in_s3
+        response = HttpResponse(image_url,content_type="image/png")
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
@@ -91,9 +94,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('OutputEmployeeSystem.html', employee_id = emp_id, name=employee_name, jobrole=job_role,month_salary=salary, number_of_rows=number_of_rows, scientist_count = scientist_count, engineering_count = engineering_count, hr_count = hr_count, image_url = image_url)
-
-
+    return render_template('OutputEmployeeSystem.html', employee_id = emp_id, name=employee_name, jobrole=job_role,month_salary=salary, number_of_rows=number_of_rows, scientist_count = scientist_count, engineering_count = engineering_count, hr_count = hr_count, response = response)
 
 
 @app.route("/addemp1", methods=['POST'])

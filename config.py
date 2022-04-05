@@ -5,3 +5,5 @@ customdb = "employee"
 custombucket = "justinthamjiawei-employee"
 customregion = "us-east-1"
 cloudfront = "d3nlr5iilrh9yz.cloudfront.net"
+ACCESS_KEY_ID = 'ASIAQP4DB36QZ3X6MT23'
+ACCESS_SECRET_KEY = 'SFGH+5scmkeg4AAYTDXuyop7HY6x3iieszVW2S3l'
