@@ -64,7 +64,9 @@ def AddEmp():
         scientist_count = cursor.execute("SELECT * FROM employee WHERE job_role = 'Data Scientist'")
         engineering_count = cursor.execute("SELECT *  FROM employee WHERE job_role = 'Software Engineering'")
         hr_count = cursor.execute("SELECT * FROM employee WHERE job_role = 'Human Resource'")
-        image_url = "https://"+bucket+".s3.amazonaws.com/"+emp_image_file_name_in_s3
+        #image_url = "https://"+bucket+".s3.amazonaws.com/"+emp_image_file_name_in_s3
+        image_url = "https://"+cloud_domain+"/"+emp_image_file_name_in_s3
+
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
