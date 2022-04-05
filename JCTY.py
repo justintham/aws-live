@@ -58,9 +58,6 @@ def AddEmp():
         # Uplaod image file in S3 #
         emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + ".png"
         s3 = boto3.resource('s3')
-        s3_object = s3.Object(bucket, emp_image_file_name_in_s3)
-        s3_object.metadata.update({'id':'image/png'})
-        s3_object.copy_from(CopySource={'Bucket':bucket, 'Key':emp_image_file_name_in_s3}, Metadata=s3_object.metadata, MetadataDirective='REPLACE')
         number_of_rows = cursor.execute("SELECT * FROM employee")
         scientist_count = cursor.execute("SELECT * FROM employee WHERE job_role = 'Data Scientist'")
         engineering_count = cursor.execute("SELECT *  FROM employee WHERE job_role = 'Software Engineering'")
@@ -82,6 +79,9 @@ def AddEmp():
                 s3_location,
                 custombucket,
                 emp_image_file_name_in_s3)
+            s3_object = s3.Object(bucket, emp_image_file_name_in_s3)
+            s3_object.metadata.update({'id':'image/png'})
+            s3_object.copy_from(CopySource={'Bucket':bucket, 'Key':emp_image_file_name_in_s3}, Metadata=s3_object.metadata, MetadataDirective='REPLACE')
 
         except Exception as e:
             return str(e)
